@@ -52,19 +52,24 @@ public class PongGame extends JPanel implements ActionListener {
             ballSpeedY = -ballSpeedY;
         }
 
-        // Ball collision with paddle
-        if (ballX <= 50 && ballX >= 40 && ballY >= paddleY && ballY <= paddleY + 100) {
-            ballSpeedX = -ballSpeedX;
-            playerScore++;
-        }
-
-        // Ball out of bounds
-        if (ballX <= 0 || ballX >= 600) {
+        // Ball collision with left wall
+        if (ballX <= 0) {
             // Reset ball position
             ballX = 300;
             ballY = 200;
             ballSpeedX = -ballSpeedX;
             playerScore = 0;
+        }
+
+        // Ball collision with right wall
+        if (ballX >= 580) {
+            ballSpeedX = -ballSpeedX;
+        }
+
+        // Ball collision with paddle
+        if (ballX <= 50 && ballX >= 40 && ballY >= paddleY && ballY <= paddleY + 100) {
+            ballSpeedX = -ballSpeedX;
+            playerScore++;
         }
 
         // Move the paddle
